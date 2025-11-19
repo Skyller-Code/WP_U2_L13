@@ -9,12 +9,14 @@ function addImg()
 
     const deck = document.getElementsByClassName("deck");
 
-    /*
+    
     const imgList = [
-        "url('resources/harvest_images/corn.png')";
-        "url('resources/harvest_images')";
+        "url('resources/harvest_images/corn.png')",
+        "url('resources/harvest_images')"
     ]
-        */
+
+    console.log(imgList);
+    
 
     //console.log(deck);
 
@@ -29,8 +31,9 @@ function addImg()
     }
     */
    
-    deck[0].style.backgroundImage = "url('resources/harvest_images/corn.png')";
-    deck[0].style.backgroundSize = "fill";
+    //deck[0].style.backgroundImage = "url('resources/harvest_images/corn.png')";
+    deck[0].style.backgroundImage = imgList[0];
+    deck[0].style.backgroundSize = "cover";
     
 
 
