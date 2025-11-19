@@ -16,12 +16,7 @@ body{
   border: 2px dashed black;
   align-content: center;
   margin: 10px;
-  
-
-}
-
-.images{
-  height: 100px;
-  width: 100px;
   object-fit: cover;
+
 }
+
