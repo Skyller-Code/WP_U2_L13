@@ -7,19 +7,20 @@ function addImg()
 {
     console.log("testing");
 
-    //const deck = document.getElementsByClassName("blocksinside");
-    const deck = Array(document.getElementsByTagName("img"));
+    const deck = document.getElementsByClassName("deck");
 
     console.log(deck);
 
     console.log(typeof deck);
 
-    for(let img = 0; img < deck.length; img++)
+    for(let card = 0; card < deck.length; card++)
     {
-        console.log(deck[img]);
+        console.log(deck[card]);
+
+        deck[card].style.backgroundImage = "url('corn.png')";
     }
 
-    deck.sort(function(){return 0.5 - Math.random});
+    //deck.sort(function(){return 0.5 - Math.random});
 
     console.log(deck);
 }
