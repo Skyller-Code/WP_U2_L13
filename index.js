@@ -17,7 +17,7 @@ function addImg()
     {
         console.log(deck[card]);
 
-        deck[card].style.backgroundImage = "url('corn.png')";
+        deck[card].style.backgroundImage = "url('resources/harvest_images/corn.png')";
     }
 
     //deck.sort(function(){return 0.5 - Math.random});
