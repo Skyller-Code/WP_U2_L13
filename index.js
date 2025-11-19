@@ -11,7 +11,7 @@ function addImg()
 
     console.log(deck);
 
-    for(let img = 0; img > deck.length; img++)
+    for(let img = 0; img < deck.length; img++)
     {
         console.log(deck[img]);
     }
