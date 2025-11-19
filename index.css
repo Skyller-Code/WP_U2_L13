@@ -1,0 +1,20 @@
+
+body{
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
+
+.blocksinside{
+  width:100px;
+  height:100px;
+  border: 2px dashed black;
+  align-content: center;
+  margin: 10px;
+
+}
