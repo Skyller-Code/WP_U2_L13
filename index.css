@@ -13,10 +13,9 @@ body{
 .deck{
   width:100px;
   height:100px;
-  border: 2px dashed black;
+  border: 2px solid black;
   align-content: center;
   margin: 10px;
-  object-fit: cover;
 
 }
 
