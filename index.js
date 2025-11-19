@@ -8,9 +8,11 @@ function addImg()
     console.log("testing");
 
     //const deck = document.getElementsByClassName("blocksinside");
-    const deck = document.getElementsByTagName("img");
+    const deck = Array(document.getElementsByTagName("img"));
 
     console.log(deck);
+
+    console.log(typeof deck);
 
     for(let img = 0; img < deck.length; img++)
     {
