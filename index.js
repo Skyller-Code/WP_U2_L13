@@ -7,7 +7,8 @@ function addImg()
 {
     console.log("testing");
 
-    const deck = document.getElementsByClassName("blocksinside");
+    //const deck = document.getElementsByClassName("blocksinside");
+    const deck = document.getElementsByTagName("img");
 
     console.log(deck);
 
@@ -15,4 +16,8 @@ function addImg()
     {
         console.log(deck[img]);
     }
+
+    deck.sort(function(){return 0.5 - Math.random});
+
+    console.log(deck);
 }
