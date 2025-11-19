@@ -9,6 +9,6 @@ function addImg()
 
     for(let img = 0; img > deck.length; img++)
     {
-        console.log(deck[img]); //last left off
+        console.log(deck[img]);
     }
 }
