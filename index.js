@@ -5,7 +5,11 @@ function flip() //its called flip because when a card is clicked it will flip sh
 
 function addImg()
 {
+    console.log("testing");
+
     const deck = document.getElementsByClassName("blocksinside");
+
+    console.log(deck);
 
     for(let img = 0; img > deck.length; img++)
     {
