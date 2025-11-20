@@ -1,6 +1,6 @@
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
-let fliCard = [];
+let fliCard = []; //this will store which 2 cards have been flipped
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
@@ -23,16 +23,19 @@ function flip(card, img) //its called flip because when a card is clicked it wil
             fliCard[1].onclick = ""; //removes the onclick
 
             //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
-
-            //removes the cards from the deck or makes them unclickable
-
-            fliImg = []; //resets the array
-            fliCard = []; //resets the array
         }
+
+        else
+        {
+            fliCard[0].style.backgroundImage = "url('')";
+            fliCard[1].style.backgroundImage = "url('')";
+        }
+
+        fliImg = []; //resets the array
+        fliCard = []; //resets the array
     }
 }
 
-//note: i think the images need to go in a folder called index since they go on a page called index
 //note: need to find a way to run this code from home
 //ask what the .. was about
 
@@ -68,11 +71,6 @@ function addImg()
 
     imgList.sort(function(){return 0.5 - Math.random()});
 
-    //console.log(deck);
-
-    //console.log(typeof deck);
-
-    
     for(let card = 0; card < imgList.length; card++)
     {
         console.log(deck[card]);
