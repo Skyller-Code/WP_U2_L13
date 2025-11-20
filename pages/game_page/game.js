@@ -9,10 +9,18 @@ function addImg()
 
     const deck = document.getElementsByClassName("deck");
 
-
+//note: i think the images need to go in a folder called index since they go on a page called index
     const imgList = [
         "url('resources/harvest_images/corn.png')",
-        "url('resources/harvest_images')",
+        "url('resources/harvest_images/bluechicken.png')",
+        "url('resources/harvest_images/cartharvest.png')",
+        "url('resources/harvest_images/goldenpumpkin.png')",
+        "url('resources/harvest_images/harvestbasket.png')",
+        "url('resources/harvest_images/harvestchicken.png')",
+        "url('resources/harvest_images/harvestpie.png')",
+        "url('resources/harvest_images/hotcider.png')",
+        "url('resources/harvest_images/netherhoe.png')",
+        "url('resources/harvest_images/pumpkin.png')"
     ]
 
     console.log(imgList);
