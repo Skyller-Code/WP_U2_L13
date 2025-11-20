@@ -1,9 +1,11 @@
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 
-function flip(img) //its called flip because when a card is clicked it will flip showing its other side
+function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
+
+    card.style.backgroundImage = img;
 
     fliImg.push(img); //adds the flipped img to the array
 
@@ -34,27 +36,27 @@ function addImg()
     const deck = document.getElementsByClassName("deck");
     
     const imgList = [
-        "url('resources/harvest_images/corn.png')",
-        "url('resources/harvest_images/bluechicken.png')",
-        "url('resources/harvest_images/cartharvest.png')",
-        "url('resources/harvest_images/goldenpumpkin.png')",
-        "url('resources/harvest_images/harvestbasket.png')",
-        "url('resources/harvest_images/harvestchicken.png')",
-        "url('resources/harvest_images/harvestpie.png')",
-        "url('resources/harvest_images/hotcider.png')",
-        "url('resources/harvest_images/netherhoe.png')",
-        "url('resources/harvest_images/pumpkin.png')",
+        "url('resources/index/corn.png')",
+        "url('resources/index/bluechicken.png')",
+        "url('resources/index/cartharvest.png')",
+        "url('resources/index/goldenpumpkin.png')",
+        "url('resources/index/harvestbasket.png')",
+        "url('resources/index/harvestchicken.png')",
+        "url('resources/index/harvestpie.png')",
+        "url('resources/index/hotcider.png')",
+        "url('resources/index/netherhoe.png')",
+        "url('resources/index/pumpkin.png')",
 
-        "url('resources/harvest_images/corn.png')",
-        "url('resources/harvest_images/bluechicken.png')",
-        "url('resources/harvest_images/cartharvest.png')",
-        "url('resources/harvest_images/goldenpumpkin.png')",
-        "url('resources/harvest_images/harvestbasket.png')",
-        "url('resources/harvest_images/harvestchicken.png')",
-        "url('resources/harvest_images/harvestpie.png')",
-        "url('resources/harvest_images/hotcider.png')",
-        "url('resources/harvest_images/netherhoe.png')",
-        "url('resources/harvest_images/pumpkin.png')"
+        "url('resources/index/corn.png')",
+        "url('resources/index/bluechicken.png')",
+        "url('resources/index/cartharvest.png')",
+        "url('resources/index/goldenpumpkin.png')",
+        "url('resources/index/harvestbasket.png')",
+        "url('resources/index/harvestchicken.png')",
+        "url('resources/index/harvestpie.png')",
+        "url('resources/index/hotcider.png')",
+        "url('resources/index/netherhoe.png')",
+        "url('resources/index/pumpkin.png')"
     ]
 
     imgList.sort(function(){return 0.5 - Math.random()});
@@ -71,7 +73,7 @@ function addImg()
         //deck[card].style.backgroundImage = imgList[card];
         deck[card].style.backgroundImage = "url('')";
 
-        deck[card].onclick = function(){flip(imgList[card])};
+        deck[card].onclick = function(){flip(deck[card], imgList[card])};
 
         deck[card].style.backgroundSize = "cover";
     }
