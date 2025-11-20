@@ -70,13 +70,4 @@ function addImg()
         deck[card].style.backgroundImage = imgList[card];
         deck[card].style.backgroundSize = "cover";
     }
-    
-   
-    //deck[0].style.backgroundImage = "url('resources/harvest_images/corn.png')";
-    /*
-    deck[0].style.backgroundImage = imgList[0];
-    deck[0].style.backgroundSize = "cover";
-    */
-
-    //console.log(deck);
 }
