@@ -13,6 +13,14 @@ function addImg()
     const imgList = [
         "url('resources/harvest_images/corn.png')",
         "url('resources/harvest_images')",
+        "url('resources/harvest_images/cartharvest.png')",
+        "url('resources/harvest_images/goldenpumpkin.png')",
+        "url('resources/harvest_images/harvestbasket.png')",
+        "url('resources/harvest_images/harvestchicken.png')",
+        "url('resources/harvest_images/harvestpie.png')",
+        "url('resources/harvest_images/hotcider.png')",
+        "url('resources/harvest_images/netherhoe.png')",
+        "url('resources/harvest_images/pumpkin.png')"
     ]
 
     console.log(imgList);
