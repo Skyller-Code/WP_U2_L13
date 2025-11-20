@@ -1,26 +1,33 @@
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
+let fliCard = [];
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
 
-    card.style.backgroundImage = img;
+    card.style.backgroundImage = img; //reveals the image
 
     fliImg.push(img); //adds the flipped img to the array
-
-    //still need to find a way to hide and reveal the image
-    //idea: change the background color so that it's over the image, then remove it
+    fliCard.push(card);
 
     if(fliImg.length == 2)
     {
+        console.log("2");
+
         if(fliImg[0] == fliImg[1])
         {
+            console.log("the same");
+
+            fliCard[0].onclick = ""; //removes the onclick
+            fliCard[1].onclick = ""; //removes the onclick
+
             //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
 
             //removes the cards from the deck or makes them unclickable
 
             fliImg = []; //resets the array
+            fliCard = []; //resets the array
         }
     }
 }
@@ -69,12 +76,14 @@ function addImg()
     for(let card = 0; card < imgList.length; card++)
     {
         console.log(deck[card]);
+        console.log(imgList[card]);
 
         //deck[card].style.backgroundImage = imgList[card];
         deck[card].style.backgroundImage = "url('')";
 
         deck[card].onclick = function(){flip(deck[card], imgList[card])};
 
-        deck[card].style.backgroundSize = "cover";
+        deck[card].style.backgroundSize = "contain";
+        deck[card].style.backgroundRepeat = "no-repeat";
     }
 }
