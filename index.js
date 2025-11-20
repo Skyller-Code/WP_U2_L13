@@ -56,10 +56,8 @@ function addImg()
         "url('resources/harvest_images/pumpkin.png')"
     ]
 
-    imgList.sort(function(){return 0.5 - Math.random});
+    imgList.sort(function(){return 0.5 - Math.random()});
 
-    console.log(imgList);
-    
     //console.log(deck);
 
     //console.log(typeof deck);
