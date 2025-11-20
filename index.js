@@ -25,6 +25,7 @@ function flip(img) //its called flip because when a card is clicked it will flip
 
 //note: i think the images need to go in a folder called index since they go on a page called index
 //note: need to find a way to run this code from home
+//ask what the .. was about
 
 function addImg()
 {
@@ -67,7 +68,11 @@ function addImg()
     {
         console.log(deck[card]);
 
-        deck[card].style.backgroundImage = imgList[card];
+        //deck[card].style.backgroundImage = imgList[card];
+        deck[card].style.backgroundImage = "url('')";
+
+        deck[card].onclick = function(){flip(imgList[card])};
+
         deck[card].style.backgroundSize = "cover";
     }
 }
