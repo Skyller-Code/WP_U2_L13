@@ -28,7 +28,7 @@ function addImg()
         console.log(deck[card]);
 
         deck[card].style.backgroundImage = imgList[card];
-        deck[card].style.backgroundSize = "cover";
+        deck[card].style.backgroundSize = "cover"; //last left off
     }
     
    
