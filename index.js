@@ -29,43 +29,16 @@ function flip(card, img) //its called flip because when a card is clicked it wil
         {
             console.log("not the same");
 
-            //setTimeout(sleep, 3000);
-
-            //test();
-
-            setTimeout(function (param1, param2) {
-                console.log(param1 + ' ' + param2);
-            }, 1000, 'Hello', 'Geeks');
-
-            setTimeout(function (fliCard[0], fliCard[1]) { //last left off
-                console.log("sleep");
-
-                fliCard[0].style.backgroundImage = "url('')";
-                fliCard[1].style.backgroundImage = "url('')";
-            }, 3000, fliCard[0], fliCard[1]);
-
-            /*
-            fliCard[0].style.backgroundImage = "url('')";
-            fliCard[1].style.backgroundImage = "url('')";
-            */
+            setTimeout(function (cardOne, cardTwo)
+            {
+                cardOne.style.backgroundImage = "url('')";
+                cardTwo.style.backgroundImage = "url('')";
+            }, 1000, fliCard[0], fliCard[1]);
         }
 
         fliImg = []; //resets the array
         fliCard = []; //resets the array
     }
-}
-
-function sleep()
-{
-    console.log("sleep");
-
-    fliCard[0].style.backgroundImage = "url('')";
-    fliCard[1].style.backgroundImage = "url('')";
-}
-
-function test()
-{
-    return new Promise(resolve => setTimeout(resolve, 3000));
 }
 
 //note: need to find a way to run this code from home
