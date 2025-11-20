@@ -2,9 +2,15 @@
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
 
+let deckLeft = document.getElementsByClassName("deck");
+
+//console.log(deckLeft);
+
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
+    //need to show whose turn it is in html first
+
 
     card.style.backgroundImage = img; //reveals the image
 
@@ -21,6 +27,8 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
             fliCard[0].onclick = ""; //removes the onclick
             fliCard[1].onclick = ""; //removes the onclick
+
+            //deckLeft //last left off trying to remove the cards from this variable
 
             //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
         }
