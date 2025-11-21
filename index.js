@@ -4,12 +4,11 @@ let fliCard = []; //this will store which 2 cards have been flipped
 
 let deckLeft = document.getElementsByClassName("deck"); //this will be used to know when  game is over
 
-//console.log(deckLeft);
-
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
     //need to show whose turn it is in html first
+    console.log(typeof deckLeft, "type");
 
 
     card.style.backgroundImage = img; //reveals the image
