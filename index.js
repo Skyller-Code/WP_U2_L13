@@ -6,8 +6,9 @@ let deckLeft = 20; //this will be used to know when game is over. not done with 
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
-    //const pl = document.getElementById(""); //this will be how we know whose turn it is
-    //need to show whose turn it is in html first
+    const turn = document.getElementById("turn"); //this will be how we know whose turn it is
+
+    console.log(turn);
 
     if(!fliCard.includes(card)) //makes sure the card that was just clicked isn't clicked twice
     {
@@ -49,6 +50,10 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
             fliImg = []; //resets the array
             fliCard = []; //resets the array
+
+            turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`;
+
+            console.log(turn); //last left off
         }
     }
 }
