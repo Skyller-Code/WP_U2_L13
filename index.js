@@ -2,9 +2,13 @@
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
 
-let deckLeft = document.getElementsByClassName("deck"); //this will be used to know when  game is over
+let deckLeft = []; //document.getElementsByClassName("deck"); //this will be used to know when  game is over
 
-console.log(Array(deckLeft));
+/*
+deckLeft = Array(deckLeft);
+
+console.log(deckLeft);
+*/
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
@@ -12,6 +16,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
     //need to show whose turn it is in html first
     console.log(typeof deckLeft, "type");
 
+    console.log(deckLeft); //last left off
 
     card.style.backgroundImage = img; //reveals the image
 
@@ -29,7 +34,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
             fliCard[0].onclick = ""; //removes the onclick
             fliCard[1].onclick = ""; //removes the onclick
 
-            deckLeft = deckLeft.filter(removeCard); //last left off trying to remove the cards from this variable
+            deckLeft = deckLeft.filter(removeCard);
 
             console.log(deckLeft);
 
@@ -105,4 +110,6 @@ function addImg()
         deck[card].style.backgroundSize = "contain";
         deck[card].style.backgroundRepeat = "no-repeat";
     }
+
+    deckLeft = document.getElementsByClassName("deck");
 }
