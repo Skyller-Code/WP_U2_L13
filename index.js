@@ -2,7 +2,7 @@
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
 
-let deckLeft = document.getElementsByClassName("deck");
+let deckLeft = document.getElementsByClassName("deck"); //this will be used to know when  game is over
 
 //console.log(deckLeft);
 
@@ -28,7 +28,9 @@ function flip(card, img) //its called flip because when a card is clicked it wil
             fliCard[0].onclick = ""; //removes the onclick
             fliCard[1].onclick = ""; //removes the onclick
 
-            //deckLeft //last left off trying to remove the cards from this variable
+            deckLeft = deckLeft.filter(removeCard); //last left off trying to remove the cards from this variable
+
+            console.log(deckLeft);
 
             //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
         }
@@ -47,6 +49,11 @@ function flip(card, img) //its called flip because when a card is clicked it wil
         fliImg = []; //resets the array
         fliCard = []; //resets the array
     }
+}
+
+function removeCard(card) //might be too long
+{
+    return card != fliCard[0] || card != fliCard[1];
 }
 
 //note: need to find a way to run this code from home
