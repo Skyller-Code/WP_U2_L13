@@ -9,10 +9,60 @@ function flip(card, img) //its called flip because when a card is clicked it wil
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
     //need to show whose turn it is in html first
 
+    
+    if(!fliCard.includes(card))
+    {
+        console.log("clicked");
+
+        card.style.backgroundImage = img; //reveals the image
+
+        fliImg.push(img); //adds the flipped img to the array
+        fliCard.push(card); //adds the flipped card to the array
+
+        console.log(fliCard);
+
+        if(fliImg.length == 2) //sometimes imgs stay flipped when not wanted
+        {
+            console.log("2");
+
+            if(fliImg[0] == fliImg[1])
+            {
+                console.log("the same");
+
+                fliCard[0].onclick = ""; //removes the onclick
+                fliCard[1].onclick = ""; //removes the onclick
+
+                deckLeft -= 2;
+
+                //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
+            }
+
+            else
+            {
+                console.log("not the same");
+
+                setTimeout(function (cardOne, cardTwo) //waits a second to cover the images
+                {
+                    cardOne.style.backgroundImage = "url('')";
+                    cardTwo.style.backgroundImage = "url('')";
+                }, 1000, fliCard[0], fliCard[1]);
+            }
+
+            fliImg = []; //resets the array
+            fliCard = []; //resets the array
+        }
+    }
+    
+
+    /*
+    console.log("clicked");
+    
     card.style.backgroundImage = img; //reveals the image
 
     fliImg.push(img); //adds the flipped img to the array
     fliCard.push(card); //adds the flipped card to the array
+
+    card.disable = true; //this stops the same card from being clicked twice
 
     if(fliImg.length == 2) //sometimes imgs stay flipped when not wanted
     {
@@ -34,16 +84,23 @@ function flip(card, img) //its called flip because when a card is clicked it wil
         {
             console.log("not the same");
 
-            setTimeout(function (cardOne, cardTwo)
+            setTimeout(function (cardOne, cardTwo) //waits a second to cover the images
             {
                 cardOne.style.backgroundImage = "url('')";
                 cardTwo.style.backgroundImage = "url('')";
             }, 1000, fliCard[0], fliCard[1]);
+
+            //fliCard[0].onclick = function(){flip(fliCard[0], fliImg[0])};
+            //fliCard[1].onclick = function(){flip(fliCard[1], fliImg[1])};
+
+            fliCard[0].disable = false;
+            fliCard[1].disable = false;
         }
 
         fliImg = []; //resets the array
         fliCard = []; //resets the array
     }
+    */
 }
 
 //note: need to find a way to run this code from home
