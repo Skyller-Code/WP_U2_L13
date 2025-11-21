@@ -1,5 +1,6 @@
 body{
   text-align: center;
+  background-color: green;
 }
 
 .row {
@@ -10,11 +11,23 @@ body{
 }
 
 .deck{
-  width:100px;
-  height:140px;
+  width:61px;
+  height:100px;
   border: 2px solid black;
   align-content: center;
   margin: 10px;
+  background-color: white;
 
 }
 
+.links{
+  color: white;
+}
+
+#naviboard{
+  background-color: black;
+  color: white;
+  height: 25px;
+  font-size: 18px;
+  
+}
