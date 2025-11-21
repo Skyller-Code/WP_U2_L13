@@ -1,10 +1,15 @@
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
-let fliCard = [];
+let fliCard = []; //this will store which 2 cards have been flipped
+
+let deckLeft = document.getElementsByClassName("deck"); //this will be used to know when  game is over
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 {
     //const pl = document.getElementById(""); //this will be how we know whose turn it is
+    //need to show whose turn it is in html first
+    console.log(typeof deckLeft, "type");
+
 
     card.style.backgroundImage = img; //reveals the image
 
@@ -22,17 +27,34 @@ function flip(card, img) //its called flip because when a card is clicked it wil
             fliCard[0].onclick = ""; //removes the onclick
             fliCard[1].onclick = ""; //removes the onclick
 
+            deckLeft = deckLeft.filter(removeCard); //last left off trying to remove the cards from this variable
+
+            console.log(deckLeft);
+
             //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
-
-            //removes the cards from the deck or makes them unclickable
-
-            fliImg = []; //resets the array
-            fliCard = []; //resets the array
         }
+
+        else
+        {
+            console.log("not the same");
+
+            setTimeout(function (cardOne, cardTwo)
+            {
+                cardOne.style.backgroundImage = "url('')";
+                cardTwo.style.backgroundImage = "url('')";
+            }, 1000, fliCard[0], fliCard[1]);
+        }
+
+        fliImg = []; //resets the array
+        fliCard = []; //resets the array
     }
 }
 
-//note: i think the images need to go in a folder called index since they go on a page called index
+function removeCard(card) //might be too long
+{
+    return card != fliCard[0] || card != fliCard[1];
+}
+
 //note: need to find a way to run this code from home
 //ask what the .. was about
 
@@ -68,11 +90,6 @@ function addImg()
 
     imgList.sort(function(){return 0.5 - Math.random()});
 
-    //console.log(deck);
-
-    //console.log(typeof deck);
-
-    
     for(let card = 0; card < imgList.length; card++)
     {
         console.log(deck[card]);
