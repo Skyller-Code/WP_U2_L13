@@ -1,6 +1,9 @@
 
-sessionStorage.setItem("Player 1 Game Wins", 0); //the keys might be too long
-sessionStorage.setItem("Player 2 Game Wins", 0);
+if(sessionStorage.getItem("Player 1 Game Wins") == null) //this is so the keys don't get reset
+{
+    sessionStorage.setItem("Player 1 Game Wins", 0); //the keys might be too long
+    sessionStorage.setItem("Player 2 Game Wins", 0);
+}
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
