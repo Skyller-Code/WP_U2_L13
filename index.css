@@ -1,6 +1,19 @@
+@font-face {
+    font-family: 'StardewValley'; /* Give your font a name */
+    src: url('./resources/fonts/StardewValley.ttf') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
   text-align: center;
-  background-color: green;
+  background-color: #580023;
+  font-family: "StardewValley" 
+  
+}
+
+h4,h1{
+  margin: 0px;
 }
 
 .row {
@@ -25,7 +38,7 @@ body{
 }
 
 #naviboard{
-  background-color: black;
+  background-color: #927314;
   color: white;
   height: 25px;
   font-size: 18px;
