@@ -1,34 +1,31 @@
 
-if(sessionStorage.getItem("Player 1 Game Wins") == null) //this is so the keys don't get reset
+if(sessionStorage.getItem("pOneWins") == null) //this is so the keys don't get reset
 {
-    sessionStorage.setItem("Player 1 Game Wins", 0); //the keys might be too long
-    sessionStorage.setItem("Player 2 Game Wins", 0);
+    sessionStorage.setItem("pOneWins", 0); //the keys might be too long
+    sessionStorage.setItem("pTwoWins", 0);
 }
 
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
-
 let deckLeft = 20; //this will be used to know when game is over. not done with this!
-
 let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
 
 const rePlay = document.createElement("div");
 rePlay.id = "re-play";
-rePlay.textContent = "Play again";
 rePlay.onclick = function(){reset()};
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 { //might have too much code (has over 50 lines)
     const turn = document.getElementById("turn"); //this will be how we know whose turn it is
-
     const pl = document.getElementsByClassName("players");
+
+    console.log(deckLeft);
 
     if(!fliCard.includes(card))
     {
         console.log("clicked");
 
         card.style.backgroundImage = img; //reveals the image
-
         fliImg.push(img); //adds the flipped img to the array
         fliCard.push(card); //adds the flipped card to the array
 
@@ -50,34 +47,50 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 matInRow++;
 
                 pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
-                //this line right above adds 1 to the player's score that matched 2 cards //idk why ++ breaks this but + 1 doesn't
+                //this line right above adds 1 to the player's score that matched 2 cards
 
-                if(deckLeft == 0)
+                if(deckLeft == 18) //need to add a win message
                 {
                     const body = document.getElementsByTagName("body")[0];
 
-                    body.appendChild(rePlay);
-
                     if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
                     {
-                        //ask if we can add a winner message to say who won
-                        sessionStorage.getItem("Player 1 Game Wins")++;
+                        console.log(sessionStorage.getItem("pOneWins"));
+                        //sessionStorage.getItem("pOneWins") = Number(sessionStorage.getItem("pOneWins")) + 1;
+                        /*
+                        let winNum = Number(sessionStorage.getItem("pOneWins"));
+                        winNum++;
+                        sessionStorage.getItem("pOneWins") = winNum;
+                        */
+                       sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
+                        console.log(sessionStorage.getItem("pOneWins"));
 
                         const wins = document.getElementById("one-wins")
-                        //wins.textContent = `Player 1 Game Wins: ${}` //last left off with adding the total wins for player 1
+                        wins.textContent = `pOneWins: ${sessionStorage.getItem("pOneWins")}`
+
+                        rePlay.textContent = "Player 1 Wins! Play again";
+                        body.appendChild(rePlay);
                     }
 
                     else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
                     {
-                        sessionStorage.getItem("Player 2 Game Wins")++;
+                        sessionStorage.getItem("pTwoWins") + 1;
+
+                        console.log(sessionStorage.getItem("pTwoWins"));
+
+                        const wins = document.getElementById("two-wins")
+                        wins.textContent = `pTwoWins: ${sessionStorage.getItem("pTwoWins")}`
+
+                        rePlay.textContent = "Player 2 Wins! Play again";
+                        body.appendChild(rePlay);
                     }
 
-                    /*
                     else
                     {
-                        //unsure what to put here
+                        rePlay.textContent = "Nobody wins. Play again";
+                        body.appendChild(rePlay);
                     }
-                    */
+                    
                 }
 
                 if(matInRow == 2)
