@@ -5,14 +5,23 @@ if(sessionStorage.getItem("pOneWins") == null) //this is so the keys don't get r
     sessionStorage.setItem("pTwoWins", 0);
 }
 
-let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
-let fliCard = []; //this will store which 2 cards have been flipped
-let deckLeft = 20; //this will be used to know when game is over. not done with this!
-let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
+function updSco() //stands for update scores
+{
+    const body = document.getElementsByTagName("body")[0];
+    const pOWinDis = document.getElementById("one-wins")
+    pOWinDis.textContent = `Player 1 Game Wins: ${sessionStorage.getItem("pOneWins")}`
+    const pTWinDis = document.getElementById("two-wins")
+    pTWinDis.textContent = `Player 2 Game Wins: ${sessionStorage.getItem("pTwoWins")}`
+}
 
 const rePlay = document.createElement("div");
 rePlay.id = "re-play";
 rePlay.onclick = function(){reset()};
+
+let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
+let fliCard = []; //this will store which 2 cards have been flipped
+let deckLeft = 20; //this will be used to know when game is over. not done with this!
+let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 { //might have too much code (has over 50 lines)
@@ -56,31 +65,21 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                     if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
                     {
                         console.log(sessionStorage.getItem("pOneWins"));
-                        //sessionStorage.getItem("pOneWins") = Number(sessionStorage.getItem("pOneWins")) + 1;
-                        /*
-                        let winNum = Number(sessionStorage.getItem("pOneWins"));
-                        winNum++;
-                        sessionStorage.getItem("pOneWins") = winNum;
-                        */
-                       sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
+                        sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
                         console.log(sessionStorage.getItem("pOneWins"));
-
-                        const wins = document.getElementById("one-wins")
-                        wins.textContent = `pOneWins: ${sessionStorage.getItem("pOneWins")}`
-
+                        updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
+                        
                         rePlay.textContent = "Player 1 Wins! Play again";
                         body.appendChild(rePlay);
                     }
 
                     else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
                     {
-                        sessionStorage.getItem("pTwoWins") + 1;
-
                         console.log(sessionStorage.getItem("pTwoWins"));
-
-                        const wins = document.getElementById("two-wins")
-                        wins.textContent = `pTwoWins: ${sessionStorage.getItem("pTwoWins")}`
-
+                        sessionStorage.setItem("pTwoWins", Number(sessionStorage.getItem("pTwoWins")) + 1);
+                        console.log(sessionStorage.getItem("pTwoWins"));
+                        updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
+                        //last left off testing the new scoring thing
                         rePlay.textContent = "Player 2 Wins! Play again";
                         body.appendChild(rePlay);
                     }
@@ -116,7 +115,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 matInRow = 0; //resets the value even when it might still be 0
             }
 
-            fliImg = []; //resets the array
+            fliImg = []; //resets the array //might not need this due to .reload
             fliCard = []; //resets the array
         }
     }
@@ -155,17 +154,12 @@ function addImg()
     ]
 
     imgList.sort(function(){return 0.5 - Math.random()});
-
-    for(let card = 0; card < imgList.length; card++) //need an proper background for the cards besides white
+    for(let card = 0; card < imgList.length; card++)
     {
         console.log(deck[card]);
         console.log(imgList[card]);
-
-        //deck[card].style.backgroundImage = imgList[card];
         deck[card].style.backgroundImage = "url('')";
-
         deck[card].onclick = function(){flip(deck[card], imgList[card])};
-
         deck[card].style.backgroundSize = "contain";
         deck[card].style.backgroundRepeat = "no-repeat";
     }
