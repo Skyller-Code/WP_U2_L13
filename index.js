@@ -1,16 +1,26 @@
 
+sessionStorage.setItem("Player 1 Game Wins", 0); //the keys might be too long
+sessionStorage.setItem("Player 2 Game Wins", 0);
+
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
 
 let deckLeft = 20; //this will be used to know when game is over. not done with this!
 
+let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
+
+const rePlay = document.createElement("div");
+rePlay.id = "re-play";
+rePlay.textContent = "Play again";
+rePlay.onclick = function(){reset()};
+
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
-{
+{ //might have too much code (has over 50 lines)
     const turn = document.getElementById("turn"); //this will be how we know whose turn it is
 
-    console.log(turn);
+    const pl = document.getElementsByClassName("players");
 
-    if(!fliCard.includes(card)) //makes sure the card that was just clicked isn't clicked twice
+    if(!fliCard.includes(card))
     {
         console.log("clicked");
 
@@ -21,7 +31,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
         console.log(fliCard);
 
-        if(fliImg.length == 2) //sometimes imgs stay flipped when not wanted
+        if(fliImg.length == 2) //is true when 2 cards have been flipped
         {
             console.log("2");
 
@@ -34,7 +44,45 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
                 deckLeft -= 2;
 
-                //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
+                matInRow++;
+
+                pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
+                //this line right above adds 1 to the player's score that matched 2 cards //idk why ++ breaks this but + 1 doesn't
+
+                if(deckLeft == 0)
+                {
+                    const body = document.getElementsByTagName("body")[0];
+
+                    body.appendChild(rePlay);
+
+                    if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
+                    {
+                        //ask if we can add a winner message to say who won
+                        sessionStorage.getItem("Player 1 Game Wins")++;
+
+                        const wins = document.getElementById("one-wins")
+                        //wins.textContent = `Player 1 Game Wins: ${}` //last left off with adding the total wins for player 1
+                    }
+
+                    else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
+                    {
+                        sessionStorage.getItem("Player 2 Game Wins")++;
+                    }
+
+                    /*
+                    else
+                    {
+                        //unsure what to put here
+                    }
+                    */
+                }
+
+                if(matInRow == 2)
+                {
+                    turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`; //changes whose turn it is
+
+                    matInRow = 0; //resets the value
+                }
             }
 
             else
@@ -46,14 +94,14 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                     cardOne.style.backgroundImage = "url('')";
                     cardTwo.style.backgroundImage = "url('')";
                 }, 1000, fliCard[0], fliCard[1]);
+
+                turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`; //changes whose turn it is
+
+                matInRow = 0; //resets the value even when it might still be 0
             }
 
             fliImg = []; //resets the array
             fliCard = []; //resets the array
-
-            turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`;
-
-            console.log(turn); //last left off
         }
     }
 }
@@ -92,7 +140,7 @@ function addImg()
 
     imgList.sort(function(){return 0.5 - Math.random()});
 
-    for(let card = 0; card < imgList.length; card++)
+    for(let card = 0; card < imgList.length; card++) //need an proper background for the cards besides white
     {
         console.log(deck[card]);
         console.log(imgList[card]);
@@ -105,4 +153,9 @@ function addImg()
         deck[card].style.backgroundSize = "contain";
         deck[card].style.backgroundRepeat = "no-repeat";
     }
+}
+
+function reset()
+{
+    window.location.reload();
 }
