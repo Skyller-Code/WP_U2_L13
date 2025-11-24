@@ -31,3 +31,10 @@ body{
   font-size: 18px;
   
 }
+
+
+#re-play
+{
+  border: solid;
+  background-color: rgb(125, 216, 35);
+}
