@@ -1,61 +1,114 @@
 
+if(sessionStorage.getItem("Player 1 Game Wins") == null) //this is so the keys don't get reset
+{
+    sessionStorage.setItem("Player 1 Game Wins", 0); //the keys might be too long
+    sessionStorage.setItem("Player 2 Game Wins", 0);
+}
+
 let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
 let fliCard = []; //this will store which 2 cards have been flipped
 
-let deckLeft = document.getElementsByClassName("deck"); //this will be used to know when  game is over
+let deckLeft = 20; //this will be used to know when game is over. not done with this!
+
+let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
+
+const rePlay = document.createElement("div");
+rePlay.id = "re-play";
+rePlay.textContent = "Play again";
+rePlay.onclick = function(){reset()};
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
-{
-    //const pl = document.getElementById(""); //this will be how we know whose turn it is
-    //need to show whose turn it is in html first
-    console.log(typeof deckLeft, "type");
+{ //might have too much code (has over 50 lines)
+    const turn = document.getElementById("turn"); //this will be how we know whose turn it is
 
+    const pl = document.getElementsByClassName("players");
 
-    card.style.backgroundImage = img; //reveals the image
-
-    fliImg.push(img); //adds the flipped img to the array
-    fliCard.push(card);
-
-    if(fliImg.length == 2)
+    if(!fliCard.includes(card))
     {
-        console.log("2");
+        console.log("clicked");
 
-        if(fliImg[0] == fliImg[1])
+        card.style.backgroundImage = img; //reveals the image
+
+        fliImg.push(img); //adds the flipped img to the array
+        fliCard.push(card); //adds the flipped card to the array
+
+        console.log(fliCard);
+
+        if(fliImg.length == 2) //is true when 2 cards have been flipped
         {
-            console.log("the same");
+            console.log("2");
 
-            fliCard[0].onclick = ""; //removes the onclick
-            fliCard[1].onclick = ""; //removes the onclick
-
-            deckLeft = deckLeft.filter(removeCard); //last left off trying to remove the cards from this variable
-
-            console.log(deckLeft);
-
-            //Number(pl.textcontent[]) += 1; //add a point to whose ever turn it is
-        }
-
-        else
-        {
-            console.log("not the same");
-
-            setTimeout(function (cardOne, cardTwo)
+            if(fliImg[0] == fliImg[1])
             {
-                cardOne.style.backgroundImage = "url('')";
-                cardTwo.style.backgroundImage = "url('')";
-            }, 1000, fliCard[0], fliCard[1]);
-        }
+                console.log("the same");
 
-        fliImg = []; //resets the array
-        fliCard = []; //resets the array
+                fliCard[0].onclick = ""; //removes the onclick
+                fliCard[1].onclick = ""; //removes the onclick
+
+                deckLeft -= 2;
+
+                matInRow++;
+
+                pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
+                //this line right above adds 1 to the player's score that matched 2 cards //idk why ++ breaks this but + 1 doesn't
+
+                if(deckLeft == 0)
+                {
+                    const body = document.getElementsByTagName("body")[0];
+
+                    body.appendChild(rePlay);
+
+                    if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
+                    {
+                        //ask if we can add a winner message to say who won
+                        sessionStorage.getItem("Player 1 Game Wins")++;
+
+                        const wins = document.getElementById("one-wins")
+                        //wins.textContent = `Player 1 Game Wins: ${}` //last left off with adding the total wins for player 1
+                    }
+
+                    else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
+                    {
+                        sessionStorage.getItem("Player 2 Game Wins")++;
+                    }
+
+                    /*
+                    else
+                    {
+                        //unsure what to put here
+                    }
+                    */
+                }
+
+                if(matInRow == 2)
+                {
+                    turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`; //changes whose turn it is
+
+                    matInRow = 0; //resets the value
+                }
+            }
+
+            else
+            {
+                console.log("not the same");
+
+                setTimeout(function (cardOne, cardTwo) //waits a second to cover the images
+                {
+                    cardOne.style.backgroundImage = "url('')";
+                    cardTwo.style.backgroundImage = "url('')";
+                }, 1000, fliCard[0], fliCard[1]);
+
+                turn.textContent = `Player ${(turn.textContent[7] % 2) + 1}'s turn`; //changes whose turn it is
+
+                matInRow = 0; //resets the value even when it might still be 0
+            }
+
+            fliImg = []; //resets the array
+            fliCard = []; //resets the array
+        }
     }
 }
 
-function removeCard(card) //might be too long
-{
-    return card != fliCard[0] || card != fliCard[1];
-}
-
-//note: need to find a way to run this code from home
 //ask what the .. was about
 
 function addImg()
@@ -90,7 +143,7 @@ function addImg()
 
     imgList.sort(function(){return 0.5 - Math.random()});
 
-    for(let card = 0; card < imgList.length; card++)
+    for(let card = 0; card < imgList.length; card++) //need an proper background for the cards besides white
     {
         console.log(deck[card]);
         console.log(imgList[card]);
@@ -103,4 +156,9 @@ function addImg()
         deck[card].style.backgroundSize = "contain";
         deck[card].style.backgroundRepeat = "no-repeat";
     }
+}
+
+function reset()
+{
+    window.location.reload();
 }
