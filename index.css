@@ -10,19 +10,22 @@
 }
 
 body {
-  background: linear-gradient(to bottom, #fff3e6, #ffe0b3);
+  background-size: cover;
+  background-image: url('resources/index/sdvly.png');
   color: #333;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: "StardewValley";
+
 }
 
 
 .header {
   text-align: center;
-  background-color: #ff9f43;
-  color: black;
+  opacity: 1;
+  background-color: black; 
+  color: #FFD921;
   padding: 30px 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -80,6 +83,40 @@ body {
 
 #re-play
 {
+  color: white;
   border: solid;
-  background-color: rgb(125, 216, 35);
+  background-color: black;
+}
+
+.links{
+  color: white;
+
+}
+
+#actualGame{
+  margin-left: 0px;
+
+}
+
+.turnscores{
+  border: 2px white solid;
+  margin-left: 30px;
+  margin-top: 230px;
+  color: white;
+  font-size: 20px;
+
+}
+
+.turnscores2{
+  border: 2px white solid;
+  margin-left: 0px;
+  margin-top: 230px;
+  color: white;
+  font-size: 15px;
+
+}
+
+#naviboard{
+  background-color: #333;
+  
 }

@@ -14,50 +14,62 @@
 
 <body>
 <div class="header">
-        <div id="naviboard">E | E | E</div>
+        <div id="naviboard"> <a class="links" href="pages/rules_page/rules.html">RULES PAGE</a> | <a class="links" href="pages/SDP/U2_Lab13_SDP.html">SDP</a></div>
         <h1>Harvest Memory Game</h1>
         <h3>Theme: Stardew Valley</h3>
         <p>Match the Stardew Valley themed objects with each other!</p>
     </div>
 
-
-    <div class="gameBoard">
-        <div class="row">
-            <div class="deck" id="a"></div>
-            <div class="deck" id="b"></div>
-            <div class="deck" id="c"></div>
-            <div class="deck" id="d"></div>
-            <div class="deck" id="e"></div>
+    <div class="row"> 
+        <div class="gameBoard" >
+            <div class="turnscores">
+            <h1 id = "turn">Player 1's turn</h1>
+            <h1 class = "players">Player 1 score: 0</h1>
+            <h1 class = "players">Player 2 score: 0</h1>
+            </div>
+        </div>  
+        <div class="gameBoard" id="actualGame">
+            <div class="row">
+                <div class="deck" id="a"></div>
+                <div class="deck" id="b"></div>
+                <div class="deck" id="c"></div>
+                <div class="deck" id="d"></div>
+                <div class="deck" id="e"></div>
+            </div>
+            <div class="row">
+                <div class="deck" id="f"></div>
+                <div class="deck" id="g"></div>
+                <div class="deck" id="h"></div>
+                <div class="deck" id="i"></div>
+                <div class="deck" id="j"></div>
+            </div>
+            <div class="row">
+                <div class="deck" id="k"></div>
+                <div class="deck" id="l"></div>
+                <div class="deck" id="m"></div>
+                <div class="deck" id="n"></div>
+                <div class="deck" id="o"></div>
+            </div>
+            <div class="row">
+                <div class="deck" id="p"></div>
+                <div class="deck" id="q"></div>
+                <div class="deck" id="r"></div>
+                <div class="deck" id="s"></div>
+                <div class="deck" id="t"></div>
+            </div>
         </div>
-        <div class="row">
-            <div class="deck" id="f"></div>
-            <div class="deck" id="g"></div>
-            <div class="deck" id="h"></div>
-            <div class="deck" id="i"></div>
-            <div class="deck" id="j"></div>
-        </div>
-        <div class="row">
-            <div class="deck" id="k"></div>
-            <div class="deck" id="l"></div>
-            <div class="deck" id="m"></div>
-            <div class="deck" id="n"></div>
-            <div class="deck" id="o"></div>
-        </div>
-        <div class="row">
-            <div class="deck" id="p"></div>
-            <div class="deck" id="q"></div>
-            <div class="deck" id="r"></div>
-            <div class="deck" id="s"></div>
-            <div class="deck" id="t"></div>
-        </div>
+    <div class="gameBoard" >
+            <div class="turnscores2">
+            <h1 id = "one-wins">Player 1 Game Wins: 0</h1>
+            <h1 id = "two-wins">Player 2 Game Wins: 0</h1>
+            </div>
+    </div>  
     </div>
 
-    <h1 id = "turn">Player 1's turn</h1>
-    <h1 class = "players">Player 1 score: 0</h1>
-    <h1 class = "players">Player 2 score: 0</h1>
 
-    <h1 id = "one-wins">Player 1 Game Wins: 0</h1>
-    <h1 id = "two-wins">Player 2 Game Wins: 0</h1>
+    
+
+    
     <script>updSco()</script>
     <script>addImg()</script>
 
