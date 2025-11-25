@@ -16,12 +16,52 @@ function updSco() //stands for update scores
 
 const rePlay = document.createElement("div");
 rePlay.id = "re-play";
+rePlay.textContent = "Play again";
 rePlay.onclick = function(){reset()};
 
 let fliImg = []; //this will store which 2 images have been flipped
 let fliCard = []; //this will store which 2 cards have been flipped
 let deckLeft = 20; //this will be used to know when game is over
 let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
+
+function checkGa(pl, turn) //stands for check game
+{
+    if(deckLeft == 16)
+    {
+        const body = document.getElementsByTagName("body")[0];
+
+        if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
+        {
+            console.log(sessionStorage.getItem("pOneWins"));
+            sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
+            console.log(sessionStorage.getItem("pOneWins"));
+            updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
+            
+            //rePlay.textContent = "Player 1 Wins! Play again";
+            turn.textContent = "Player 1 Wins!";
+            console.log(turn);
+        }
+
+        else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
+        {
+            console.log(sessionStorage.getItem("pTwoWins"));
+            sessionStorage.setItem("pTwoWins", Number(sessionStorage.getItem("pTwoWins")) + 1);
+            console.log(sessionStorage.getItem("pTwoWins"));
+            updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
+            //last left off testing the new scoring thing
+            //rePlay.textContent = "Player 2 Wins! Play again";
+            turn.textContent = "Player 2 Wins!";
+        }
+
+        else
+        {
+            //rePlay.textContent = "Nobody wins. Play again";
+            turn.textContent = "Nobody wins.";
+        }
+
+        body.appendChild(rePlay);
+    }
+}
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
 { //might have too much code (has over 50 lines)
@@ -58,39 +98,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
                 //this line right above adds 1 to the player's score that matched 2 cards
 
-                if(deckLeft == 16)
-                {
-                    const body = document.getElementsByTagName("body")[0];
-
-                    if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
-                    {
-                        console.log(sessionStorage.getItem("pOneWins"));
-                        sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
-                        console.log(sessionStorage.getItem("pOneWins"));
-                        updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
-                        
-                        rePlay.textContent = "Player 1 Wins! Play again";
-                        body.appendChild(rePlay);
-                    }
-
-                    else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
-                    {
-                        console.log(sessionStorage.getItem("pTwoWins"));
-                        sessionStorage.setItem("pTwoWins", Number(sessionStorage.getItem("pTwoWins")) + 1);
-                        console.log(sessionStorage.getItem("pTwoWins"));
-                        updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
-                        //last left off testing the new scoring thing
-                        rePlay.textContent = "Player 2 Wins! Play again";
-                        body.appendChild(rePlay);
-                    }
-
-                    else
-                    {
-                        rePlay.textContent = "Nobody wins. Play again";
-                        body.appendChild(rePlay);
-                    }
-                    
-                }
+                checkGa(pl, turn);
 
                 if(matInRow == 2)
                 {
