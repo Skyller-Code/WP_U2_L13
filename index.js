@@ -34,7 +34,6 @@ function checkGa(pl, turn) //stands for check game
         {
             sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
             updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
-            
             rePlay.textContent = "Player 1 Wins! Play again";
         }
 
@@ -138,10 +137,6 @@ function addImg()
     imgList.sort(function(){return 0.5 - Math.random()});
     for(let card = 0; card < imgList.length; card++)
     {
-        /*
-        console.log(deck[card]);
-        console.log(imgList[card]);
-        */
         deck[card].style.backgroundImage = "url('')";
         deck[card].onclick = function(){flip(deck[card], imgList[card])};
         deck[card].style.backgroundSize = "contain";
