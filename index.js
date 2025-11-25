@@ -58,7 +58,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
                 //this line right above adds 1 to the player's score that matched 2 cards
 
-                if(deckLeft == 18) //need to add a win message
+                if(deckLeft == 0)
                 {
                     const body = document.getElementsByTagName("body")[0];
 
