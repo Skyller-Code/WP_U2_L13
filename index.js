@@ -26,37 +26,28 @@ let matInRow = 0; //stands for matched in row. is used for letting a player go t
 
 function checkGa(pl, turn) //stands for check game
 {
-    if(deckLeft == 16)
+    if(deckLeft == 0)
     {
         const body = document.getElementsByTagName("body")[0];
 
         if(Number(pl[0].textContent[16]) > Number(pl[1].textContent[16])) //if player 1 has a higher score
         {
-            console.log(sessionStorage.getItem("pOneWins"));
             sessionStorage.setItem("pOneWins", Number(sessionStorage.getItem("pOneWins")) + 1);
-            console.log(sessionStorage.getItem("pOneWins"));
             updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
             
-            //rePlay.textContent = "Player 1 Wins! Play again";
-            turn.textContent = "Player 1 Wins!";
-            console.log(turn);
+            rePlay.textContent = "Player 1 Wins! Play again";
         }
 
         else if(Number(pl[0].textContent[16]) < Number(pl[1].textContent[16])) //if player 2 has a higher score
         {
-            console.log(sessionStorage.getItem("pTwoWins"));
             sessionStorage.setItem("pTwoWins", Number(sessionStorage.getItem("pTwoWins")) + 1);
-            console.log(sessionStorage.getItem("pTwoWins"));
             updSco(); //this is so it update as soon as a game ends instead of when the button is pressed/the page reloads
-            //last left off testing the new scoring thing
-            //rePlay.textContent = "Player 2 Wins! Play again";
-            turn.textContent = "Player 2 Wins!";
+            rePlay.textContent = "Player 2 Wins! Play again";
         }
 
         else
         {
-            //rePlay.textContent = "Nobody wins. Play again";
-            turn.textContent = "Nobody wins.";
+            rePlay.textContent = "Nobody wins. Play again";
         }
 
         body.appendChild(rePlay);
@@ -64,30 +55,20 @@ function checkGa(pl, turn) //stands for check game
 }
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
-{ //might have too much code (has over 50 lines)
+{
     const turn = document.getElementById("turn"); //this will be how we know whose turn it is
     const pl = document.getElementsByClassName("players");
 
-    console.log(deckLeft);
-
     if(!fliCard.includes(card))
     {
-        console.log("clicked");
-
         card.style.backgroundImage = img; //reveals the image
         fliImg.push(img); //adds the flipped img to the array
         fliCard.push(card); //adds the flipped card to the array
 
-        console.log(fliCard);
-
         if(fliImg.length == 2) //is true when 2 cards have been flipped
         {
-            console.log("2");
-
             if(fliImg[0] == fliImg[1])
             {
-                console.log("the same");
-
                 fliCard[0].onclick = ""; //removes the onclick
                 fliCard[1].onclick = ""; //removes the onclick
 
@@ -110,8 +91,6 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
             else
             {
-                console.log("not the same");
-
                 setTimeout(function (cardOne, cardTwo) //waits a second to cover the images
                 {
                     cardOne.style.backgroundImage = "url('')";
@@ -128,8 +107,6 @@ function flip(card, img) //its called flip because when a card is clicked it wil
         }
     }
 }
-
-//ask what the .. was about
 
 function addImg()
 {
@@ -161,8 +138,10 @@ function addImg()
     imgList.sort(function(){return 0.5 - Math.random()});
     for(let card = 0; card < imgList.length; card++)
     {
+        /*
         console.log(deck[card]);
         console.log(imgList[card]);
+        */
         deck[card].style.backgroundImage = "url('')";
         deck[card].onclick = function(){flip(deck[card], imgList[card])};
         deck[card].style.backgroundSize = "contain";
