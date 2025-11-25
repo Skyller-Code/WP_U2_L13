@@ -1,16 +1,16 @@
 
 if(sessionStorage.getItem("pOneWins") == null) //this is so the keys don't get reset
 {
-    sessionStorage.setItem("pOneWins", 0); //the keys might be too long
+    sessionStorage.setItem("pOneWins", 0);
     sessionStorage.setItem("pTwoWins", 0);
 }
 
 function updSco() //stands for update scores
 {
     const body = document.getElementsByTagName("body")[0];
-    const pOWinDis = document.getElementById("one-wins")
+    const pOWinDis = document.getElementById("one-wins") //stands for player one wins display
     pOWinDis.textContent = `Player 1 Game Wins: ${sessionStorage.getItem("pOneWins")}`
-    const pTWinDis = document.getElementById("two-wins")
+    const pTWinDis = document.getElementById("two-wins") //stands for player two wins display
     pTWinDis.textContent = `Player 2 Game Wins: ${sessionStorage.getItem("pTwoWins")}`
 }
 
@@ -18,9 +18,9 @@ const rePlay = document.createElement("div");
 rePlay.id = "re-play";
 rePlay.onclick = function(){reset()};
 
-let fliImg = []; //this will store which 2 images have been flipped //maybe it should be const instead of let
+let fliImg = []; //this will store which 2 images have been flipped
 let fliCard = []; //this will store which 2 cards have been flipped
-let deckLeft = 20; //this will be used to know when game is over. not done with this!
+let deckLeft = 20; //this will be used to know when game is over
 let matInRow = 0; //stands for matched in row. is used for letting a player go twice when they've matched 2 cards
 
 function flip(card, img) //its called flip because when a card is clicked it will flip showing its other side
@@ -58,7 +58,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 pl[turn.textContent[7] - 1].textContent = `Player ${turn.textContent[7]} score: ${Number(pl[turn.textContent[7] - 1].textContent[16]) + 1}`;
                 //this line right above adds 1 to the player's score that matched 2 cards
 
-                if(deckLeft == 0)
+                if(deckLeft == 16)
                 {
                     const body = document.getElementsByTagName("body")[0];
 
@@ -115,7 +115,7 @@ function flip(card, img) //its called flip because when a card is clicked it wil
                 matInRow = 0; //resets the value even when it might still be 0
             }
 
-            fliImg = []; //resets the array //might not need this due to .reload
+            fliImg = []; //resets the array
             fliCard = []; //resets the array
         }
     }
@@ -125,8 +125,6 @@ function flip(card, img) //its called flip because when a card is clicked it wil
 
 function addImg()
 {
-    console.log("testing");
-
     const deck = document.getElementsByClassName("deck");
     
     const imgList = [
