@@ -138,7 +138,6 @@ function addImg()
         "url('resources/index/hotcider.png')",
         "url('resources/index/netherhoe.png')",
         "url('resources/index/pumpkin.png')",
-
         "url('resources/index/corn.png')",
         "url('resources/index/bluechicken.png')",
         "url('resources/index/cartharvest.png')",
